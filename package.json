@@ -10,9 +10,11 @@
     "monitor": "pm2 monit",
     "reload-env": "pm2 reload --update-env ecosystem.config.js",
     "stop": "pm2 stop ecosystem.config.js",
-    "delete": "pm2 delete ecosystem.config.js"
+    "delete": "pm2 delete ecosystem.config.js",
+    "knex": "knex --knexfile ./db/knexfile.js --debug"
   },
   "dependencies": {
+    "bluebird": "^3.5.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
@@ -20,7 +22,9 @@
     "express": "~4.16.0",
     "express-ejs-layouts": "^2.5.0",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "knex": "^0.16.3",
+    "morgan": "~1.9.0",
+    "pg": "^7.8.0"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
