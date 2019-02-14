@@ -2366,11 +2366,6 @@ pre code
     background-color: #fff;
     box-shadow: none, none;
 }
-.form-control:-ms-input-placeholder
-{
-    opacity: 1; 
-    color: #adb5bd;
-}
 .form-control::-ms-input-placeholder
 {
     opacity: 1; 
@@ -18020,10 +18015,6 @@ a.btn-icon-only
 {
     font-size: .875rem;
 }
-.form-control:focus:-ms-input-placeholder
-{
-    color: #adb5bd;
-}
 .form-control:focus::-ms-input-placeholder
 {
     color: #adb5bd;
@@ -18125,10 +18116,6 @@ textarea[resize='horizontal']
 {
     border-color: rgba(50, 151, 211, .25);
 }
-.has-success .form-control:-ms-input-placeholder
-{
-    color: #2dce89;
-}
 .has-success .form-control::-ms-input-placeholder
 {
     color: #2dce89;
@@ -18153,10 +18140,6 @@ textarea[resize='horizontal']
 .has-danger .form-control:focus
 {
     border-color: rgba(50, 151, 211, .25);
-}
-.has-danger .form-control:-ms-input-placeholder
-{
-    color: #fb6340;
 }
 .has-danger .form-control::-ms-input-placeholder
 {
@@ -19909,10 +19892,6 @@ textarea[resize='horizontal']
 {
     color: rgba(255, 255, 255, .9);
 }
-.navbar-search-dark .form-control:-ms-input-placeholder
-{
-    color: rgba(255, 255, 255, .6);
-}
 .navbar-search-dark .form-control::-ms-input-placeholder
 {
     color: rgba(255, 255, 255, .6);
@@ -19940,10 +19919,6 @@ textarea[resize='horizontal']
 .navbar-search-light .form-control
 {
     color: rgba(0, 0, 0, .9);
-}
-.navbar-search-light .form-control:-ms-input-placeholder
-{
-    color: rgba(0, 0, 0, .6);
 }
 .navbar-search-light .form-control::-ms-input-placeholder
 {

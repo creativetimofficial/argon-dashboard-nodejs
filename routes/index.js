@@ -2,7 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-const registerRouter = require('../features/register/routes');
+const mountRegisterRoutes = require('../features/register/routes');
+const mountLoginRoutes = require('../features/login/routes');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -25,10 +26,7 @@ router.get('/tables', (req, res) => {
   res.render('pages/tables');
 });
 
-router.get('/login', (req, res) => {
-  res.render('pages/login');
-});
-
-router.use(registerRouter);
+mountRegisterRoutes(router);
+mountLoginRoutes(router);
 
 module.exports = router;

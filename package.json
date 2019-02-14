@@ -6,7 +6,7 @@
     "pm2": "pm2",
     "gulp": "gulp",
     "start": "pm2 start",
-    "start-dev": "pm2 start && gulp",
+    "dev": "concurrently \"node --inspect=0.0.0.0:9229 ./bin/www\" \"gulp\"",
     "monitor": "pm2 monit",
     "reload-env": "pm2 reload --update-env ecosystem.config.js",
     "stop": "pm2 stop ecosystem.config.js",
@@ -17,6 +17,7 @@
     "async-middleware": "^1.2.1",
     "bcrypt": "^3.0.4",
     "bluebird": "^3.5.3",
+    "concurrently": "^4.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
@@ -26,8 +27,10 @@
     "http-errors": "~1.6.2",
     "joi": "^14.3.1",
     "knex": "^0.16.3",
-    "morgan": "~1.9.0",
-    "pg": "^7.8.0"
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.8.0",
+    "pino": "^5.11.1"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
@@ -57,6 +60,7 @@
     "gulp-wait": "0.0.2",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.3",
+    "pino-pretty": "^2.5.0",
     "pm2": "^3.2.9",
     "postcss-flexbugs-fixes": "^3.3.1",
     "prettier": "^1.16.4",

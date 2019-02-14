@@ -26,22 +26,37 @@
               <div class="text-center text-muted mb-4">
                 <small>Or sign in with credentials</small>
               </div>
-              <form role="form">
+              <form role="form" action="/login" method="POST">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" placeholder="Email" type="email" name="username">
                   </div>
+                  <% if (locals.errors && errors.username) { %>
+                    <strong class="invalid-feedback" style="display: block">
+                      <%= errors.username %>
+                    </strong>
+                  <% } %>
+                  <% if (locals.errors && errors.invalidEmailOrPassword) { %>
+                    <strong class="invalid-feedback" style="display: block">
+                      <%= errors.invalidEmailOrPassword %>
+                    </strong>
+                  <% } %>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" placeholder="Password" type="password" name="password">
                   </div>
+                  <% if (locals.errors && errors.password) { %>
+                    <strong class="invalid-feedback" style="display: block">
+                      <%= errors.password %>
+                    </strong>
+                  <% } %>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
@@ -50,7 +65,7 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
+                  <button class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
             </div>
