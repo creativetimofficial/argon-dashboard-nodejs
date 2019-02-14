@@ -6,7 +6,7 @@
     "pm2": "pm2",
     "gulp": "gulp",
     "start": "pm2 start",
-    "dev": "concurrently \"node --inspect=0.0.0.0:9229 ./bin/www\" \"gulp\"",
+    "dev": "concurrently \"pm2 start --watch\" \"gulp\"",
     "monitor": "pm2 monit",
     "reload-env": "pm2 reload --update-env ecosystem.config.js",
     "stop": "pm2 stop ecosystem.config.js",
