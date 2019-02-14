@@ -3,8 +3,8 @@ services:
   postgres:
     image: postgres
     environment:
-      POSTGRES_USER: 'certme'
-      POSTGRES_PASSWORD: 'certme'
+      POSTGRES_USER: 'creativeTim'
+      POSTGRES_PASSWORD: 'creativeTim'
     ports:
       - 5432:5432
     volumes:
