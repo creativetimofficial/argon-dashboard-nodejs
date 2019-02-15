@@ -23,3 +23,40 @@
     </div>
   </div>
 </footer>
+
+<script>
+  function addEvent(event, elem, func) {
+    console.log('addEvent:::', event, elem, func);
+    if (elem.addEventListener) // W3C DOM
+      elem.addEventListener(event, func, false);
+    else if (elem.attachEvent) { // IE DOM
+      elem.attachEvent("on" + event, func);
+    } else { // No much to do
+      elem["on" + event] = func;
+    }
+  }
+
+  function redirectToLogin() {
+    if (this.status === 200) {
+      console.log('redirectToLogin:::', this);
+      return window.location = this.responseURL || '/login';
+    }
+  }
+
+  function logout() {
+    console.log('logout:::', this);
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", redirectToLogin);
+    xhr.open("POST", "/logout");
+    xhr.send();
+  }
+
+  var logoutElements = document.querySelectorAll('.logout');
+
+  logoutElements.forEach(function(element) {
+    addEvent('click', element, logout);
+  });
+
+  // addEvent('click', logoutElement, logout);
+</script>

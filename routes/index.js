@@ -4,6 +4,7 @@ const router = express.Router();
 
 const mountRegisterRoutes = require('../features/register/routes');
 const mountLoginRoutes = require('../features/login/routes');
+const mountLogoutRoutes = require('../features/logout/routes');
 const mountResetPasswordRoutes = require('../features/reset-password/routes');
 
 /* GET home page. */
@@ -29,6 +30,7 @@ router.get('/tables', (req, res) => {
 
 mountRegisterRoutes(router);
 mountLoginRoutes(router);
+mountLogoutRoutes(router);
 mountResetPasswordRoutes(router);
 
 module.exports = router;
