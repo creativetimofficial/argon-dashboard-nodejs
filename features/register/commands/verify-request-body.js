@@ -10,7 +10,6 @@ const schema = Joi.object().keys({
     .max(NAME_MAX)
     .required(),
   password: Joi.string()
-    .regex(/^[a-zA-Z0-9]/)
     .min(PASSWORD_MIN)
     .max(PASSWORD_MAX),
   username: Joi.string().email({ minDomainAtoms: 2 }),
@@ -29,12 +28,11 @@ async function validateRegisterPayload({ body }, res, next) {
     errors = {};
     details.forEach(errorDetail => {
       const {
-        message,
         path: [key],
         type,
       } = errorDetail;
       const errorType = type.split('.')[1];
-      errors[key] = constants[`${key.toUpperCase()}_${errorType.toUpperCase()}_ERROR`] || message;
+      errors[key] = constants[`${key.toUpperCase()}_${errorType.toUpperCase()}_ERROR`];
     });
   }
 
