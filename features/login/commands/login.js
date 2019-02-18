@@ -1,7 +1,7 @@
 const debug = require('debug')('express:login');
 const passport = require('passport');
 
-const { USERNAME_PASSWORD_COMBINATION_ERROR } = require('../constants');
+const { USERNAME_PASSWORD_COMBINATION_ERROR, INTERNAL_SERVER_ERROR } = require('../constants');
 
 function login(req, res, next) {
   return passport.authenticate('local', (error, user) => {
@@ -11,7 +11,15 @@ function login(req, res, next) {
       });
     }
 
-    return next();
+    req.logIn(user, loginError => {
+      if (loginError) {
+        return res.status(500).render('pages/login', {
+          errors: { internalServerError: INTERNAL_SERVER_ERROR },
+        });
+      }
+
+      return next();
+    });
   })(req, res, next);
 }
 

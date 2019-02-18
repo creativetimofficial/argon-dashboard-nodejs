@@ -1,4 +1,4 @@
-<body class="bg-default">  
+<body class="bg-default">
   <div class="main-content">
     <!-- Navbar -->
     <% include ../partials/auth/navbar %>
@@ -34,15 +34,12 @@
                     </div>
                     <input class="form-control" placeholder="Email" type="email" name="username">
                   </div>
-                  <% if (locals.errors && errors.username) { %>
-                    <strong class="invalid-feedback" style="display: block">
-                      <%= errors.username %>
-                    </strong>
-                  <% } %>
-                  <% if (locals.errors && errors.invalidEmailOrPassword) { %>
-                    <strong class="invalid-feedback" style="display: block">
-                      <%= errors.invalidEmailOrPassword %>
-                    </strong>
+                  <% if (locals.errors) { %>
+                    <% Object.keys(locals.errors).filter(function(key) { return ['username', 'invalidEmailOrPassword', 'internalServerError'].includes(key); }).map(function(key) { %>
+                      <strong class="invalid-feedback" style="display: block">
+                        <%= errors[key] %>
+                      </strong>
+                    <% }) %>
                   <% } %>
                 </div>
                 <div class="form-group">

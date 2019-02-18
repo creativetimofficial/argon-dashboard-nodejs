@@ -7,10 +7,17 @@ const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 
 const logger = require('./logger');
 const initAuthMiddleware = require('./features/login/init-auth-middleware');
 const indexRouter = require('./routes/index');
+
+const redisStore = new RedisStore({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+});
 
 const app = express();
 
@@ -24,7 +31,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const { COOKIE_EXPIRATION_MS } = process.env;
+app.use(
+  session({
+    store: redisStore,
+    secret: 'keyboard cat',
+    name: process.env.SESSION_COOKIE_NAME,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      // TODO: this is for test mode only so that passport/session will work without https
+      secure: false,
+      expires: Date.now() + parseInt(COOKIE_EXPIRATION_MS, 10),
+      maxAge: parseInt(COOKIE_EXPIRATION_MS, 10),
+    },
+  })
+);
+
 initAuthMiddleware(app);
+
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

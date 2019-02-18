@@ -23,7 +23,7 @@ async function getUserForLoginData(email, password) {
 
   return {
     id: user.id,
-    username: user.username,
+    username: user.email,
     created_at: user.created_at,
   };
 }
