@@ -50,6 +50,12 @@ app.use(
 
 initAuthMiddleware(app);
 
+// Middleware used for setting error and success messages as available in _ejs_ templates
+app.use((req, res, next) => {
+  res.locals.messages = req.session.messages;
+  next();
+});
+
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

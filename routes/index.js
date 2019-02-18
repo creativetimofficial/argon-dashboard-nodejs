@@ -6,6 +6,7 @@ const mountRegisterRoutes = require('../features/register/routes');
 const mountLoginRoutes = require('../features/login/routes');
 const mountLogoutRoutes = require('../features/logout/routes');
 const mountResetPasswordRoutes = require('../features/reset-password/routes');
+const mountProfileRoutes = require('../features/profile/routes');
 
 function isAuthenticated(req, res, next) {
   if (req.user && req.isAuthenticated()) {
@@ -28,10 +29,6 @@ router.get('/maps', isAuthenticated, (req, res) => {
   res.render('pages/maps');
 });
 
-router.get('/profile', isAuthenticated, (req, res) => {
-  res.render('pages/profile');
-});
-
 router.get('/tables', isAuthenticated, (req, res) => {
   res.render('pages/tables');
 });
@@ -40,5 +37,6 @@ mountRegisterRoutes(router);
 mountLoginRoutes(router);
 mountLogoutRoutes(router, [isAuthenticated]);
 mountResetPasswordRoutes(router);
+mountProfileRoutes(router, [isAuthenticated]);
 
 module.exports = router;
