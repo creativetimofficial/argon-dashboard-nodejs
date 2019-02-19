@@ -35,8 +35,8 @@
                     </div>
                     <input class="form-control" name="name" placeholder="Name" type="text" required>
                   </div>
-                  <% if (locals.errors && errors.name) { %>
-                    <strong class="invalid-feedback" style="display: block"><%= errors.name %></strong>
+                  <% if (locals.messages && messages.errors && messages.errors.name) { %>
+                    <strong class="invalid-feedback" style="display: block"><%= messages.errors.name %></strong>
                   <% } %>
                 </div>
                 <div class="form-group">
@@ -46,8 +46,8 @@
                     </div>
                     <input class="form-control" name="username" placeholder="Email" type="email" required>
                   </div>
-                  <% if (locals.errors && errors.username) { %>
-                    <strong class="invalid-feedback" style="display: block"><%= errors.username %></strong>
+                  <% if (locals.messages && messages.errors && messages.errors.username) { %>
+                    <strong class="invalid-feedback" style="display: block"><%= messages.errors.username %></strong>
                   <% } %>
                 </div>
                 <div class="form-group">
@@ -57,8 +57,8 @@
                     </div>
                     <input class="form-control" name="password" placeholder="Password" type="password" required>
                   </div>
-                  <% if (locals.errors && errors.password) { %>
-                    <strong class="invalid-feedback" style="display: block"><%= errors.password %></strong>
+                  <% if (locals.messages && messages.errors && messages.errors.password) { %>
+                    <strong class="invalid-feedback" style="display: block"><%= messages.errors.password %></strong>
                   <% } %>
                 </div>
                 <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
@@ -72,8 +72,8 @@
                     </div>
                   </div>
                 </div>
-                <% if (locals.databaseError) { %>
-                  <strong class="invalid-feedback" style="display: block"><%= databaseError %></strong>
+                <% if (locals.messages && locals.messages.databaseError) { %>
+                  <strong class="invalid-feedback" style="display: block"><%= messages.databaseError %></strong>
                 <% } %>
                 <div class="text-center">
                   <button class="btn btn-primary mt-4">Create account</button>

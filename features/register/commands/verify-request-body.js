@@ -15,10 +15,10 @@ const schema = Joi.object().keys({
   username: Joi.string().email({ minDomainAtoms: 2 }),
 });
 
-async function validateRegisterPayload({ body }, res, next) {
+async function validateRegisterPayload(req, res, next) {
   let payloadValidation;
   try {
-    payloadValidation = await Joi.validate(body, schema, { abortEarly: false });
+    payloadValidation = await Joi.validate(req.body, schema, { abortEarly: false });
   } catch (validateRegisterError) {
     payloadValidation = validateRegisterError;
   }
@@ -37,7 +37,8 @@ async function validateRegisterPayload({ body }, res, next) {
   }
 
   if (errors) {
-    return res.status(400).render('pages/register', { errors: { ...errors } });
+    req.session.messages = { errors };
+    return res.status(400).redirect('/register');
   }
   return next();
 }

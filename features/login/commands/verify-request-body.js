@@ -7,15 +7,14 @@ const { PASSWORD_MAX, PASSWORD_MIN } = constants;
 const schema = Joi.object().keys({
   username: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string()
-    .regex(/^[a-zA-Z0-9]/)
     .min(PASSWORD_MIN)
     .max(PASSWORD_MAX),
 });
 
-module.exports = async function validate({ body }, res, next) {
+module.exports = async function validate(req, res, next) {
   let payloadValidation = {};
   try {
-    payloadValidation = await Joi.validate(body, schema, { abortEarly: false });
+    payloadValidation = await Joi.validate(req.body, schema, { abortEarly: false });
   } catch (validateRegisterError) {
     payloadValidation = validateRegisterError;
   }
@@ -26,17 +25,17 @@ module.exports = async function validate({ body }, res, next) {
     errors = {};
     details.forEach(errorDetail => {
       const {
-        message,
         path: [key],
         type,
       } = errorDetail;
       const errorType = type.split('.')[1];
-      errors[key] = constants[`${key.toUpperCase()}_${errorType.toUpperCase()}_ERROR`] || message;
+      errors[key] = constants[`${key.toUpperCase()}_${errorType.toUpperCase()}_ERROR`];
     });
   }
 
   if (errors) {
-    return res.status(400).render('pages/login', { errors: { ...errors } });
+    req.session.messages = { errors };
+    return res.status(400).redirect('/login');
   }
   return next();
 };

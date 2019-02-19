@@ -5,6 +5,7 @@ const PASSWORD_MIN_ERROR = `Password length must be at least ${PASSWORD_MIN} cha
 const USERNAME_EMAIL_ERROR = 'Email must be a valid email address';
 const USERNAME_PASSWORD_COMBINATION_ERROR = 'These credentials do not match our records.';
 const INTERNAL_SERVER_ERROR = 'Something went wrong! Please try again.';
+const SUCCESFULY_LOGGED_IN = 'You have succesfuly logged in.';
 
 module.exports = {
   PASSWORD_MAX,
@@ -14,4 +15,5 @@ module.exports = {
   USERNAME_EMAIL_ERROR,
   USERNAME_PASSWORD_COMBINATION_ERROR,
   INTERNAL_SERVER_ERROR,
+  SUCCESFULY_LOGGED_IN,
 };

@@ -52,7 +52,9 @@ initAuthMiddleware(app);
 
 // Middleware used for setting error and success messages as available in _ejs_ templates
 app.use((req, res, next) => {
-  res.locals.messages = req.session.messages;
+  if (req.session) {
+    res.locals.messages = req.session.messages;
+  }
   next();
 });
 
