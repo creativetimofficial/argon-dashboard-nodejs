@@ -59,23 +59,8 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
-
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  logger.error('Topmost error handler reached: %s - stack: %s', err.message, err.stack);
-  if (!err.status || err.status === 500) {
-    return res.status(500).json({
-      errors: [{ message: 'Server Error' }],
-    });
-  }
-
-  return res.status(err.status).json({
-    errors: [err],
-  });
+app.use((req, res) => {
+  res.status(404).render('pages/404');
 });
 
 module.exports = app;
