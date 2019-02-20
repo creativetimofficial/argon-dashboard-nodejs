@@ -53,6 +53,7 @@ initAuthMiddleware(app);
 app.use((req, res, next) => {
   if (req.session) {
     res.locals.messages = req.session.messages;
+    req.session.messages = {};
   }
   next();
 });
