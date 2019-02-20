@@ -29,11 +29,6 @@ function login(req, res, next) {
   })(req, res, next);
 }
 
-function loadPage(req, res) {
-  debug('login:servePage', req, res);
-  res.render('pages/login');
-}
-
 function redirectToDashboard(req, res) {
   debug('login:sendOkResponse');
   res.redirect('/');
@@ -41,6 +36,5 @@ function redirectToDashboard(req, res) {
 
 module.exports = {
   login,
-  loadPage,
   redirectToDashboard,
 };

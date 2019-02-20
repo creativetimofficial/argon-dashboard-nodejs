@@ -13,4 +13,4 @@ async function loadPage(req, res) {
   res.render('pages/profile', { ...userInfo });
 }
 
-module.exports = { loadPage };
+module.exports = loadPage;
