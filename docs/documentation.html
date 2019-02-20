@@ -8,14 +8,14 @@
   <meta name="author" content="Creative Tim">
   <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
   <!-- Favicon -->
-  <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="../public/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="../assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../public/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="../public/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="../assets/css/argon.css?v=1.0.0" rel="stylesheet">
+  <link type="text/css" href="../public/css/argon.css?v=1.0.0" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="../index.html">
-        <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <img src="../public/img/brand/blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -47,7 +47,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg">
+                <img alt="Image placeholder" src="../public/img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -86,7 +86,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="../index.html">
-                <img src="../assets/img/brand/blue.png">
+                <img src="../public/img/brand/blue.png">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -195,7 +195,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="../assets/img/theme/team-4-800x800.jpg">
+                  <img alt="Image placeholder" src="../public/img/theme/team-4-800x800.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
@@ -247,12 +247,136 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row justify-content-center">
-        <div class="col-lg-4">
-          <div class="card bg-gradient-default text-center p-5">
-            <a href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" class="btn btn-white btn-icon mb-3 mb-sm-0">
-              <span class="btn-inner--icon"><i class="ni ni-collection"></i></span>
-              <span class="btn-inner--text">View Docs Online</span>
-            </a>
+        <div class="col-lg-10">
+          <div class="card p-5">
+            <div class="mume markdown-preview   ">
+              <h2 class="mume-header" id="installation">Installation</h2>
+              <ol>
+                <li>You need <code>Node.js</code> installed on your machine, if you don't have it, you should install it</li>
+                <li><a href="https://github.com/express-argon/">Clone project from github</a> or <a href="https://github.com/node-argon-archive/">download an archive</a></li>
+                <li><code>cd</code> to your downloaded Argon app</li>
+                <li>Install necessary dependencies:</li>
+              </ol>
+              <h5 class="mume-header" id="via-node-npm-package-manager">Via node <code>npm</code> package manager</h5>
+              
+              <ol>
+                <li>Run <code>npm install</code> on the project root</li>
+              </ol>
+              <h5 class="mume-header" id="by-using-yarn-package-manager">By using <code>yarn</code> package manager</h5>
+                
+              <ol>
+                <li>Run <code>yarn install</code> on the project root</li>
+              </ol>
+              <h2 class="mume-header" id="configuration-for-posgresql-database-and-redis-data-structure-store">Configuration for Posgresql database and Redis data structure store</h2>
+              
+              <h5 class="mume-header" id="via-docker">Via Docker</h5>
+                
+              <ol>
+                <li>Install <strong>docker</strong> on your machine</li>
+                <li>Run <code>docker-compose up -d</code> in a terminal on the project root</li>
+              </ol>
+              <h5 class="mume-header" id="via-another-choosen-solution">Via another choosen solution.</h5>
+                
+              <ol>
+                <li>Install your <strong>Posgresql</strong> database</li>
+                <li>Install your <strong>Redis</strong> server</li>
+                <li>Change connection configuration, from your root <code>cd</code> to <code>env-files</code> folder and change the following configurations with your own:</li>
+              </ol>
+              <ul>
+                <li><strong>For Posgresql connection:</strong></li>
+              </ul>
+              <pre data-role="codeBlock" data-info="javascript" class="language-javascript"><span class="token constant">DATABASE_URL</span><span class="token operator">=</span>http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">5432</span>
+                <span class="token constant">DATABASE_NAME</span><span class="token operator">=</span>creativeTim
+                <span class="token constant">DATABASE_USER</span><span class="token operator">=</span>creativeTim
+                <span class="token constant">DATABASE_PASSWORD</span><span class="token operator">=</span>creativeTim
+              </pre>
+              <ul>
+                <li><strong>For Redis connection:</strong></li>
+              </ul>
+              <pre data-role="codeBlock" data-info="javascript" class="language-javascript"><span class="token constant">REDIS_HOST</span><span class="token operator">=</span>localhost
+                <span class="token constant">REDIS_PORT</span><span class="token operator">=</span><span class="token number">6379</span>
+              </pre>
+              <h2 class="mume-header" id="migrate-database-tables">Migrate database tables</h2>
+                
+              <ol>
+                <li>For database tables structure, in project root run: <code>npm knex migrate:latest</code> or <code>yarn knex migrate:latest</code> if you are using <code>yarn</code> as the default package manager</li>
+                <li>To create a default user run: <code>npm knex seed:run</code> or <code>yarn knex seed:run</code> if you are using <code>yarn</code> as the default package manager</li>
+              </ol>
+              <h2 class="mume-header" id="usage">Usage</h2>
+                
+              <p>Register a user or login using <strong><a href="mailto:admin@argon.com">admin@argon.com</a></strong> and <strong>secret</strong> and start testing the preset (make sure to run the migrations and seeders for these credentials to be available).</p>
+              <p>Besides the dashboard and the auth pages this preset also has an edit profile page. Keep in mind that all the features can be viewed once you login using the credentials provided above or by registering your own user.</p>
+              <h2 class="mume-header" id="features">Features</h2>
+                
+              <p>For each feature code <code>cd</code> into <code>features</code> folder, and you will found a folder for each feature, mostly each folder contain:</p>
+              <ul>
+                <li>A <code>routes.js</code> file that usually contains <code>GET</code> and <code>POST</code> requests, for eg the profile router looks like this:</li>
+              </ul>
+              <pre data-role="codeBlock" data-info="javascript" class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span> wrap <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'async-middleware'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+                <span class="token keyword">const</span> requestBodyValidation <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./commands/verify-request-body'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">const</span> updateUserInfo <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./commands/update-user-info'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+                <span class="token keyword">const</span> <span class="token punctuation">{</span> loadPage <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./commands/profile'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+                module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span>router<span class="token punctuation">,</span> middlewares <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                  router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/profile'</span><span class="token punctuation">,</span> middlewares<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>middleware <span class="token operator">=&gt;</span> <span class="token function">wrap</span><span class="token punctuation">(</span>middleware<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">wrap</span><span class="token punctuation">(</span>loadPage<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+                  router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/update-profile-info'</span><span class="token punctuation">,</span> <span class="token function">wrap</span><span class="token punctuation">(</span>requestBodyValidation<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">wrap</span><span class="token punctuation">(</span>updateUserInfo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+                  <span class="token keyword">return</span> router<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">;</span>
+                
+              </pre>
+              <ul>
+                <li>A <code>repository.js</code> file that contains feature database queries</li>
+                <li>A <code>commands</code> folder where you can find the all feature functionality functions, for eg the one for login template rendering looks like this:</li>
+              </ul>
+              <pre data-role="codeBlock" data-info="javascript" class="language-javascript"><span class="token keyword">function</span> <span class="token function">loadPage</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">'login:servePage'</span><span class="token punctuation">,</span> req<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'pages/login'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+              </pre>
+              <ul>
+                <li>A <code>constants.js</code> file, to store all your static variables, for eg:</li>
+              </ul>
+              <pre data-role="codeBlock" data-info="" class="language-"><code>const USERNAME_PASSWORD_COMBINATION_ERROR = 'These credentials do not match our records.';
+                const INTERNAL_SERVER_ERROR = 'Something went wrong! Please try again.';
+                </code>
+              </pre>
+              <p>All feature routes are mounted in <code>routes/index.js</code> from the project root.</p>
+              <h2 class="mume-header" id="for-the-front-end-side">For the Front-end side:</h2>
+                
+              <h5 class="mume-header" id="templates">Templates</h5>
+                
+              <ul>
+                <li>You can find all the templates in <code>views</code> folder where you will find:</li>
+              </ul>
+              <ol>
+                <li>The <code>layout.ejs</code> file, the main template layout.</li>
+                <li>A <code>pages</code> folder with all the pages templates</li>
+                <li>A <code>partials</code> folder with the common components for eg. header, footer, sidebar</li>
+              </ol>
+              <h2 class="mume-header" id="change-log">Change log</h2>
+                
+              <p>Please see the <a href="../changelog.md">changelog</a> for more information on what has changed recently.</p>
+              <h2 class="mume-header" id="credits">Credits</h2>
+                
+              <ul>
+                <li><a href="https://creative-tim.com/">Creative Tim</a></li>
+                <li><a href="https://udevoffice.com/">Under Development Office</a></li>
+              </ul>
+              <h2 class="mume-header" id="license">License</h2>
+                
+              <p><a href="https://github.com/laravel-frontend-presets/argon/blob/master/license.md">MIT License</a>.</p>
+              <h2 class="mume-header" id="screen-shots">Screen shots</h2>
+                
+              <p><img style="max-width: 100%" src="../screens/Login.png" alt="Argon Login"></p>
+              <p><img style="max-width: 100%" src="../screens/Dashboard.png" alt="Argon Dashboard"></p>
+              <p><img style="max-width: 100%" src="../screens/Users.png" alt="Argon Users"></p>
+              <p><img style="max-width: 100%" src="../screens/Profile.png" alt="Argon Profile"></p>
+      
+            </div>
           </div>
         </div>
       </div>
@@ -261,10 +385,10 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../public/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../public/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Argon JS -->
-  <script src="../assets/js/argon.js?v=1.0.0"></script>
+  <script src="../public/js/argon.js?v=1.0.0"></script>
 </body>
 
 </html>

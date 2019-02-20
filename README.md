@@ -1,162 +1,129 @@
-# [Argon Dashboard](https://www.creative-tim.com/product/argon-dashboard)
 
-![Product Gif](https://s3.amazonaws.com/creativetim_bucket/products/96/original/opt_ad_thumbnail.jpg)
+## Installation
 
-Start your development with a Dashboard for Bootstrap 4. It is open source, free and it features many components that can help you create amazing websites.
+1. You need `Node.js` installed on your machine, if you don't have it, you should install it
+2. [Clone the project from github](https://github.com/express-argon/) or [download the archive](https://github.com/node-argon-archive/)
+3. `cd` to your downloaded Argon app
+4. Install necessary dependencies:
 
-#### Fully Coded Components
+##### Via node `npm` package manager
 
-Argon Dashboard is built with over 100 individual components, giving you the freedom of choosing and combining. All components can take variations in colour, that you can easily modify using SASS files.
+1. Run `npm install` on the project root
 
-You will save a lot of time going from prototyping to full-functional code, because all elements are implemented. This Dashboard is coming with prebuilt examples, so the development process is seamless, switching from our pages to the real website is very easy to be done.
+##### By using `yarn` package manager
 
-Every element has multiple states for colors, styles, hover, focus, that you can easily access and use.
+1. Run `yarn install` on the project root
 
-#### Complex Documentation
+## Configuration for PostgreSQL database and Redis data structure store
 
-Each element is well presented in a very complex documentation. You can read more about the idea behind this dashboard here. You can check the components here and the foundation here.
+##### Via Docker
 
-#### Example Pages
+1. Install **Docker** on your machine 
+2. Run `docker-compose up -d` in a terminal on the project root
 
-If you want to get inspiration or just show something directly to your clients, you can jump start your development with our pre-built example pages. You will be able to quickly set up the basic structure for your web project.
+##### Via another chosen solution.
 
-## Table of Contents
+1. Install your **PostgreSQL** database
+2. Install your **Redis** server
+3. Change connection configuration, from your root `cd` to `env-files` folder and change the following configurations with your own:
 
-* [Demo](#demo)
-* [Quick Start](#quick-start)
-* [Documentation](#documentation)
-* [File Structure](#file-structure)
-* [Browser Support](#browser-support)
-* [Resources](#resources)
-* [Reporting Issues](#reporting-issues)
-* [Technical Support or Questions](#technical-support-or-questions)
-* [Licensing](#licensing)
-* [Useful Links](#useful-links)
+- **For PostgreSQL connection:**
 
-## Versions
-
-We are coding Argon Dashboard for this frameworks also. Chek'em out:
-
-### Coming soon
-
-- Vue.js
-- Angular
-- React
-- Sketch
-- Photoshop
-
-## Demo
-
-- [Index Page](https://demos.creative-tim.com/argon-dashboard)
-- [Dashboard](https://demos.creative-tim.com/argon-dashboard/index.html)
-- [Profile Page](https://demos.creative-tim.com/argon-dashboard/examples/profile.html)
-- [Login Page](https://demos.creative-tim.com/argon-dashboard/examples/login.html)
-- [Register Page](https://demos.creative-tim.com/argon-dashboard/examples/register.html)
-- [Tables](https://demos.creative-tim.com/argon-dashboard/examples/tables.html)
-- [Maps](https://demos.creative-tim.com/argon-dashboard/examples/maps.html)
-- [Documentation](https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html)
-
-[View More](https://demos.creative-tim.com/argon-dashboard)
-
-## Download and Installation
-
-- [Download from Github](https://github.com/creativetimofficial/argon-dashboard/archive/master.zip)
-- [Download from Creative Tim](https://www.creative-tim.com/product/argon-dashboard)
-
-
-- Install with Npm: `npm i @creative-tim-official/argon-dashboard-free`
-
-- Install with Yarn: `yarn add @creative-tim-official/argon-dashboard-free`
-
-- Install with Composer: `composer create-project creativetimofficial/argon-dashboard-free`
-
-- Clone from Github: `git clone https://github.com/creativetimofficial/argon-dashboard.git`
-
-
-## Documentation
-
-The documentation for the Argon Dashboard is hosted at our [website](https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html).
-
-## File Structure
-
-Within the download you'll find the following directories and files:
-
+```javascript
+DATABASE_URL=http://127.0.0.1:5432
+DATABASE_NAME=creativeTim
+DATABASE_USER=creativeTim
+DATABASE_PASSWORD=creativeTim
 ```
-argon/
-├── CHANGELOG.md
-├── LICENSE.md
-├── README.md
-├── assets/
-  ├── css/
-  │   ├── argon.css
-  │   ├── argon.css.map
-  │   ├── argon.min.css
-  │   ├── argon.min.css.map
-  └── img/
-  │   ├── argon/
-  │   ├── brand/
-  │   ├── icons/
-  │   ├── ill/
-  └── js/
-  │   ├── argon.js
-  │   └── argon.min.js
-  └── scss/
-  │   ├── bootstrap/
-  │   ├── core/
-  │   ├── custom/
-  │   ├── argon.scss
-  └── vendor/
-      ├── bootstrap/
-      ├── jquery/
-      ├── ...
+
+- **For Redis connection:**
+
+```javascript
+REDIS_HOST=localhost
+REDIS_PORT=6379
+```
+
+## Migrations and seeds
+
+1. For database tables structure, in the project root run: `npm knex migrate:latest` or `yarn knex migrate:latest` if you are using `yarn` as the default package manager
+2. To create a default user, run: `npm knex seed:run` or `yarn knex seed:run` if you are using `yarn` as the default package manager
+
+## Usage
+
+Register a user or login using **admin@argon.com** and **secret** and start testing the preset (make sure to run the migrations and seeds for these credentials to be available).
+
+Besides the dashboard and the auth pages this preset also has an edit profile page. Keep in mind that all available features can be viewed once you login using the credentials provided above or by registering your own user.  
+
+## Features
+
+In order to see the available features `cd` into `features` folder, and you will then find a folder for each of the available features, mostly each folder containing:
+
+- A `routes.js` file that usually contains the `GET` and `POST` requests, for example, the profile router looks like this:
+
+```javascript
+const { wrap } = require('async-middleware');
+
+const requestBodyValidation = require('./commands/verify-request-body');
+const updateUserInfo = require('./commands/update-user-info');
+
+const { loadPage } = require('./commands/profile');
+
+module.exports = (router, middlewares = []) => {
+  router.get('/profile', middlewares.map(middleware => wrap(middleware)), wrap(loadPage));
+
+  router.post('/update-profile-info', wrap(requestBodyValidation), wrap(updateUserInfo));
+
+  return router;
+};
 
 ```
 
-## Browser Support
+- A `repository.js` file that contains feature database queries
+- A `commands` folder where you can find all feature functionality functions, for example the login template rendering which looks like this:
 
-At present, we officially aim to support the last two versions of the following browsers:
+```javascript
+function loadPage(req, res) {
+  debug('login:servePage', req, res);
+  res.render('pages/login');
+}
+```
+- A `constants.js` file, to store all your static variables, for eg:
 
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+```
+const USERNAME_PASSWORD_COMBINATION_ERROR = 'These credentials do not match our records.';
+const INTERNAL_SERVER_ERROR = 'Something went wrong! Please try again.';
+```
 
-## Resources
+All feature routes are mounted in `routes/index.js` from the project root.
 
-- Demo: <https://demos.creative-tim.com/argon-dashboard>
-- Download: <https://www.creative-tim.com/product/argon-dashboard>
-- Documentation: <https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html>
-- License Agreement: <https://www.creative-tim.com/license>
-- Support: <https://www.creative-tim.com/contact-us>
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/argon-dashboard/issues)
+## For the Front-end side:
 
-## Reporting Issues
+##### Templates
 
-We use GitHub Issues as the official bug tracker for the Argon Dashboard. Here are some advices for our users that want to report an issue:
+- You can find all the templates in `views` folder where you will find:
+1. The `layout.ejs` file, the main template layout.
+2. A `pages` folder with all the page templates
+3. A `partials` folder with the common components (header, footer, sidebar)
 
-1. Make sure that you are using the latest version of the Argon Dashboard. Check the CHANGELOG from your copy on our [website](https://www.creative-tim.com).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
+## Change log
 
-## Technical Support or Questions
+Please see the [changelog](changelog.md) for more information on what has changed recently.
 
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us) instead of opening an issue.
+## Credits
 
-## Licensing
+- [Creative Tim](https://creative-tim.com/)
+- [Under Development Office](https://udevoffice.com/)
 
-- Copyright &copy; 2018 Creative Tim (https://www.creative-tim.com)
+## License
 
-- Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+[MIT License](https://github.com/laravel-frontend-presets/argon/blob/master/license.md).
 
-## Useful Links
+## Screenshots
 
-- [More products](https://www.creative-tim.com/bootstrap-themes) from Creative Tim
-- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free) from Creative Tim
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new) (earn money)
+![Argon Login](/screens/Login.png)
 
-## Social Media
+![Argon Dashboard](/screens/Dashboard.png)
 
-- Twitter: <https://twitter.com/CreativeTim>
-- Facebook: <https://www.facebook.com/CreativeTim>
-- Dribbble: <https://dribbble.com/creativetim>
-- Google+: <https://plus.google.com/+CreativetimPage>
-- Instagram: <https://www.instagram.com/CreativeTimOfficial>
+![Argon Users](/screens/Users.png)
 
+![Argon Profile](/screens/Profile.png)
