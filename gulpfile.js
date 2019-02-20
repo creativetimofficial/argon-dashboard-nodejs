@@ -9,20 +9,18 @@ const cleanCss = require('gulp-clean-css');
 const del = require('del');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
-const runSequence = require('run-sequence');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const wait = require('gulp-wait');
-const pm2 = require('pm2');
 
 // Define paths
 
 const paths = {
-  dist: {
-    base: 'dist',
-    img: 'dist/public/img',
-    libs: 'dist/public/vendor',
+  public: {
+    base: 'public',
+    img: './public/img',
+    libs: './public/vendor',
   },
   base: {
     base: './public',
@@ -34,13 +32,14 @@ const paths = {
     html: '**/*.html',
     img: 'public/img/**/*.+(png|jpg|gif|svg)',
     js: 'public/js/**/*.js',
+    ejs: 'views/**/*.ejs',
     scss: 'public/scss/**/*.scss',
   },
 };
 
 // Compile SCSS
-
-gulp.task('scss', () => {
+function scss() {
+  console.log('SCSS handler called here!!!');
   return gulp
     .src(paths.src.scss)
     .pipe(wait(500))
@@ -53,79 +52,79 @@ gulp.task('scss', () => {
     )
     .pipe(csscomb())
     .pipe(gulp.dest(paths.src.css))
-    .pipe(
-      browserSync.reload({
-        stream: true,
-      })
-    );
-});
+    .pipe(browserSync.stream({ match: '**/*.css' }));
+}
 
 // Minify CSS
-
-gulp.task('minify:css', () => {
+function minifyCSS() {
   return gulp
     .src([`${paths.src.css}/argon.css`])
     .pipe(cleanCss())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(`${paths.dist.base}/css`));
-});
+}
 
 // Minify JS
-
-gulp.task('minify:js', () => {
+function minifyJS() {
   return gulp
     .src([`${paths.src.base}/assets/js/argon.js`])
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(`${paths.dist.base}/js`));
-});
+}
 
 // Live reload
-
-gulp.task('browserSync', () => {
+function serve(done) {
   browserSync.init({
+    files: ['public/**/*', 'views/**/*'],
     proxy: 'http://0.0.0.0:8000',
   });
-});
+
+  done();
+}
 
 // Watch for changes
-
-gulp.task('watch', ['browserSync', 'scss'], () => {
-  gulp.watch(paths.src.scss, ['scss']);
-  gulp.watch(paths.src.js, pm2.restart);
-  gulp.watch(paths.src.html, pm2.restart);
-});
+function watch() {
+  gulp.watch(paths.src.scss, scss);
+  gulp.watch(paths.src.js, browserSync.reload);
+  gulp.watch(paths.src.html, browserSync.reload);
+  gulp.watch(paths.src.ejs, browserSync.reload);
+}
 
 // Clean
-
-gulp.task('clean:dist', () => {
+function cleanDist() {
   return del.sync(paths.dist.base);
-});
+}
 
 // Copy CSS
-
-gulp.task('copy:css', () => {
+function copyCSS() {
   return gulp
     .src([`${paths.src.base}/assets/css/argon.css`])
     .pipe(gulp.dest(`${paths.dist.base}/css`));
-});
+}
 
 // Copy JS
-
-gulp.task('copy:js', () => {
+function copyJS() {
   return gulp
     .src([`${paths.src.base}/assets/js/argon.js`])
     .pipe(gulp.dest(`${paths.dist.base}/js`));
-});
+}
 
 // Build
-
-gulp.task('build', callback => {
-  runSequence('clean:dist', 'scss', 'copy:css', 'copy:js', 'minify:js', 'minify:css', callback);
-});
+const build = gulp.series(cleanDist, scss, copyCSS, copyJS, minifyJS, minifyCSS);
 
 // Default
+const defaultTask = gulp.series(scss, serve, watch);
 
-gulp.task('default', callback => {
-  runSequence(['scss', 'browserSync', 'watch'], callback);
-});
+module.exports = {
+  scss,
+  minifyCSS,
+  minifyJS,
+  serve,
+  watch,
+  cleanDist,
+  copyCSS,
+  copyJS,
+  build,
+  default: defaultTask,
+};
