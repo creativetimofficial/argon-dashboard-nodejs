@@ -1,25 +1,21 @@
-
 ## Installation
 
-1. You need `Node.js` installed on your machine, if you don't have it, you should install it
+1. You need `Node.js` (at least 10.x version) installed on your machine, if you don't have it, you should install it - download [link](https://nodejs.org/en/download/)
 2. [Clone the project from github](https://github.com/express-argon/) or [download the archive](https://github.com/node-argon-archive/)
 3. `cd` to your downloaded Argon app
 4. Install necessary dependencies:
-
-##### Via node `npm` package manager
-
-1. Run `npm install` on the project root
-
-##### By using `yarn` package manager
-
-1. Run `yarn install` on the project root
+    - **Via node `npm` package manager** - Run `npm install` on the project root
+    - **Via `yarn` package manager** - Run `yarn install` on the project root
 
 ## Configuration for PostgreSQL database and Redis data structure store
 
 ##### Via Docker
 
-1. Install **Docker** on your machine 
-2. Run `docker-compose up -d` in a terminal on the project root
+1. Install **Docker** on your machine
+2. Run `docker-compose up -d` in a terminal on the project root. This will start 3 containers:
+    - database(PostgreSQL) container;
+    - redis container - required for session management;
+    - haproxy container - required only for a staging/production setup;
 
 ##### Via another chosen solution.
 
@@ -27,7 +23,7 @@
 2. Install your **Redis** server
 3. Change connection configuration, from your root `cd` to `env-files` folder and change the following configurations with your own:
 
-- **For PostgreSQL connection:**
+###### **For PostgreSQL connection:**
 
 ```javascript
 DATABASE_URL=http://127.0.0.1:5432
@@ -36,7 +32,7 @@ DATABASE_USER=creativeTim
 DATABASE_PASSWORD=creativeTim
 ```
 
-- **For Redis connection:**
+######  **For Redis connection:**
 
 ```javascript
 REDIS_HOST=localhost
@@ -48,11 +44,19 @@ REDIS_PORT=6379
 1. For database tables structure, in the project root run: `npm knex migrate:latest` or `yarn knex migrate:latest` if you are using `yarn` as the default package manager
 2. To create a default user, run: `npm knex seed:run` or `yarn knex seed:run` if you are using `yarn` as the default package manager
 
+## Run the application
+
+1. For starting the application, the following script (defined in `package.json` under `scripts`) must be called:
+    - via **npm**: `npm run start` or `npm run dev` for starting the development environment, which has livereload enabled;
+    - via **yarn**: `yarn start` or `yarn dev` for starting the development environment, which has livereload enabled;
+
+
 ## Usage
 
-Register a user or login using **admin@argon.com** and **secret** and start testing the preset (make sure to run the migrations and seeds for these credentials to be available).
+Register a user or login using **admin@argon.com**:**secret** and start testing the preset (make sure to run the migrations and seeds for these credentials to be available).
 
-Besides the dashboard and the auth pages this preset also has an edit profile page. Keep in mind that all available features can be viewed once you login using the credentials provided above or by registering your own user.  
+Besides the dashboard and the auth pages this preset also has an edit profile page.
+**NOTE**: _Keep in mind that all available features can be viewed once you login using the credentials provided above or by registering your own user._
 
 ## Features
 
@@ -65,17 +69,14 @@ const { wrap } = require('async-middleware');
 
 const requestBodyValidation = require('./commands/verify-request-body');
 const updateUserInfo = require('./commands/update-user-info');
-
 const { loadPage } = require('./commands/profile');
 
 module.exports = (router, middlewares = []) => {
   router.get('/profile', middlewares.map(middleware => wrap(middleware)), wrap(loadPage));
-
   router.post('/update-profile-info', wrap(requestBodyValidation), wrap(updateUserInfo));
 
   return router;
 };
-
 ```
 
 - A `repository.js` file that contains feature database queries
