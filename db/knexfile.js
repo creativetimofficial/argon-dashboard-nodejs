@@ -19,11 +19,11 @@ module.exports = {
       max: 10,
     },
     migrations: {
-      directory: '../migrations',
+      directory: './migrations',
       tableName: 'migrations',
     },
     seeds: {
-      directory: '../seeds',
+      directory: './seeds',
     },
   },
 
@@ -41,11 +41,11 @@ module.exports = {
       max: 10,
     },
     migrations: {
-      directory: '../migrations',
+      directory: './migrations',
       tableName: 'migrations',
     },
     seeds: {
-      directory: '../seeds',
+      directory: './seeds',
     },
   },
 
