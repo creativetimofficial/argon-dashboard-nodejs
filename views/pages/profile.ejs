@@ -1,5 +1,5 @@
 <!-- Sidenav -->
-<% include ../partials/sidebar %> 
+<% include ../partials/sidebar %>
 <!-- Main content -->
 <div class="main-content">
   <!-- Top navbar -->
@@ -47,7 +47,7 @@
             </div>
             <div class="text-center">
               <h3>
-                Jessica Jones<span class="font-weight-light">, 27</span>
+                  <%= locals.userInfo && locals.userInfo.name || 'Jessica Jones' %><span class="font-weight-light">, 27</span>
               </h3>
               <div class="h5 font-weight-300">
                 <i class="ni location_pin mr-2"></i>Bucharest, Romania
@@ -101,7 +101,7 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-name">Name</label>
-                      <input type="text" id="input-name" class="form-control form-control-alternative" name="name" placeholder="Name" value="<%= locals.name && name %>">
+                      <input type="text" id="input-name" class="form-control form-control-alternative" name="name" placeholder="Name" value="<%= locals.userInfo && locals.userInfo.name %>">
                       <% if (locals.messages && messages.errors && messages.errors.name) { %>
                         <strong class="invalid-feedback" style="display: block"><%= messages.errors.name %></strong>
                       <% } %>
@@ -110,7 +110,7 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">Email address</label>
-                      <input type="email" id="input-email" class="form-control form-control-alternative" name="username" placeholder="jesse@example.com" value="<%= locals.email && email %>">
+                      <input type="email" id="input-email" class="form-control form-control-alternative" name="username" placeholder="jesse@example.com" value="<%= locals.userInfo && locals.userInfo.email %>">
                       <% if (locals.messages && messages.errors && messages.errors.username) { %>
                         <strong class="invalid-feedback" style="display: block"><%= messages.errors.username %></strong>
                       <% } %>

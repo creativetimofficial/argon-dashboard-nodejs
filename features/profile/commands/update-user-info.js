@@ -12,10 +12,13 @@ async function updateUser(req, res) {
   } catch (error) {
     user = error;
   }
+
   if (user.email) {
     req.session.messages = { success: profileSuccessMessage };
+    req.session.userInfo = { ...user };
     res.redirect('/profile');
   }
+
   const databaseError = UPDATE_INFO_ERROR_MESSAGE;
   req.session.messages = { errors: { databaseError } };
   res.redirect('/profile');

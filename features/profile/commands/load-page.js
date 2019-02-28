@@ -10,7 +10,9 @@ async function loadPage(req, res) {
   } catch (getUserError) {
     req.session.messages = { databaseError: FETCH_INFO_ERROR_MESSAGE };
   }
-  res.render('pages/profile', { ...userInfo });
+
+  req.session.userInfo = { ...userInfo };
+  res.render('pages/profile');
 }
 
 module.exports = loadPage;

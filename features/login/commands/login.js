@@ -8,6 +8,7 @@ const {
 } = require('../constants');
 
 function login(req, res, next) {
+  debug('login');
   return passport.authenticate('local', (error, user) => {
     if (error || !user) {
       req.session.messages = {
@@ -16,7 +17,7 @@ function login(req, res, next) {
       return res.status(401).redirect('/login');
     }
 
-    req.logIn(user, loginError => {
+    return req.logIn(user, loginError => {
       if (loginError) {
         req.session.messages = {
           errors: { internalServerError: INTERNAL_SERVER_ERROR },
@@ -29,12 +30,4 @@ function login(req, res, next) {
   })(req, res, next);
 }
 
-function redirectToDashboard(req, res) {
-  debug('login:sendOkResponse');
-  res.redirect('/');
-}
-
-module.exports = {
-  login,
-  redirectToDashboard,
-};
+module.exports = login;
