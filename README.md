@@ -106,6 +106,121 @@ All feature routes are mounted in `routes/index.js` from the project root.
 2. A `pages` folder with all the page templates
 3. A `partials` folder with the common components (header, footer, sidebar)
 
+## Folder Structure
+
+```
+├── CHANGELOG.md
+├── ISSUES_TEMPLATE.md
+├── LICENSE.md
+├── README.md
+├── app.js
+├── bin
+│   └── www
+├── config
+│   └── index.js
+├── db
+│   ├── index.js
+│   ├── knexfile.js
+│   ├── migrations
+│   │   └── 20190213122702_create-users-table.js
+│   └── seeds
+│       └── create-default-user.js
+├── docker-compose.yml
+├── docs
+│   └── documentation.html
+├── ecosystem.config.js
+├── env-files
+│   ├── development.env
+│   └── production.env
+├── features
+│   ├── login
+│   │   ├── commands
+│   │   │   ├── load-page.js
+│   │   │   ├── login.js
+│   │   │   ├── redirect-to-dashboard.js
+│   │   │   └── verify-request-body.js
+│   │   ├── constants.js
+│   │   ├── init-auth-middleware.js
+│   │   ├── repository.js
+│   │   └── routes.js
+│   ├── logout
+│   │   ├── commands
+│   │   │   └── logout.js
+│   │   └── routes.js
+│   ├── profile
+│   │   ├── commands
+│   │   │   ├── load-page.js
+│   │   │   ├── update-user-info.js
+│   │   │   └── verify-request-body.js
+│   │   ├── constants.js
+│   │   ├── repository.js
+│   │   └── routes.js
+│   ├── register
+│   │   ├── commands
+│   │   │   ├── create-user.js
+│   │   │   ├── load-page.js
+│   │   │   └── verify-request-body.js
+│   │   ├── constants.js
+│   │   ├── repository.js
+│   │   └── routes.js
+│   └── reset-password
+│       ├── commands
+│       │   └── load-page.js
+│       └── routes.js
+├── gulpfile.js
+├── haproxy.cfg
+├── logger.js
+├── package.json
+├── public
+│   ├── css
+│   │   ├── argon.css
+│   │   └── argon.min.css
+│   ├── fonts
+│   │   └── nucleo
+│   ├── img
+│   │   ├── brand
+│   │   ├── icons
+│   │   └── theme
+│   ├── js
+│   │   ├── argon.js
+│   │   └── argon.min.js
+│   ├── scss
+│   │   ├── argon.scss
+│   │   ├── bootstrap
+│   │   ├── core
+│   │   └── custom
+│   └── vendor
+├── routes
+│   └── index.js
+├── screens
+│   ├── Dashboard.png
+│   ├── Login.png
+│   ├── Profile.png
+│   └── Users.png
+├── views
+│   ├── layout.ejs
+│   ├── pages
+│   │   ├── 404.ejs
+│   │   ├── dashboard.ejs
+│   │   ├── icons.ejs
+│   │   ├── login.ejs
+│   │   ├── maps.ejs
+│   │   ├── profile.ejs
+│   │   ├── register.ejs
+│   │   ├── reset-password.ejs
+│   │   └── tables.ejs
+│   └── partials
+│       ├── auth
+│       │   ├── footer.ejs
+│       │   ├── header.ejs
+│       │   └── navbar.ejs
+│       ├── dropdown.ejs
+│       ├── footer.ejs
+│       ├── header.ejs
+│       ├── navbar.ejs
+│       └── sidebar.ejs
+└
+```
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
