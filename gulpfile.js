@@ -84,7 +84,7 @@ function scssProd() {
 // Minify CSS
 function minifyCSS() {
   return gulp
-    .src([`${paths.src.base}/css/argon.css`])
+    .src([`${paths.dist.css}/argon.css`])
     .pipe(cleanCss())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(`${paths.dist.base}/css`));
