@@ -39,8 +39,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      // TODO: this is for test mode only so that passport/session will work without https
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       expires: Date.now() + parseInt(COOKIE_EXPIRATION_MS, 10),
       maxAge: parseInt(COOKIE_EXPIRATION_MS, 10),
     },

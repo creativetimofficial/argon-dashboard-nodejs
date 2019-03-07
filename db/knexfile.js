@@ -27,6 +27,28 @@ module.exports = {
     },
   },
 
+  staging: {
+    client: 'pg',
+    connection: {
+      host: process.env.DATABASE_HOST,
+      port: process.env.DATABASE_PORT,
+      database: process.env.DATABASE_NAME,
+      user: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+    },
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      directory: './migrations',
+      tableName: 'migrations',
+    },
+    seeds: {
+      directory: './seeds',
+    },
+  },
+
   production: {
     client: 'pg',
     connection: {
