@@ -85,11 +85,15 @@ function onListening() {
 }
 
 process.on('uncaughtException', uncaughtException => {
-  logger.error('Uncaught Exception:', uncaughtException);
+  logger.error(
+    'Uncaught Exception at: %s - message: %s',
+    uncaughtException.stack,
+    uncaughtException.message
+  );
 });
 
 process.on('unhandledRejection', reason => {
-  logger.error('Unhandled Rejection at:', reason);
+  logger.error('Unhandled Rejection at: %s - message: %s', reason.stack, reason.message);
 });
 
 /**

@@ -4,7 +4,7 @@ const passport = require('passport');
 const {
   USERNAME_PASSWORD_COMBINATION_ERROR,
   INTERNAL_SERVER_ERROR,
-  SUCCESFULY_LOGGED_IN,
+  SUCCESSFULLY_LOGGED_IN,
 } = require('../constants');
 
 function login(req, res, next) {
@@ -24,7 +24,7 @@ function login(req, res, next) {
         };
         return res.status(500).redirect('/login');
       }
-      req.session.messages = { loggedIn: SUCCESFULY_LOGGED_IN };
+      req.session.messages = { loggedIn: SUCCESSFULLY_LOGGED_IN };
       return next();
     });
   })(req, res, next);

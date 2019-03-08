@@ -7,7 +7,7 @@ global.Promise = require('bluebird');
 module.exports = {
   development: {
     client: 'pg',
-    connection: {
+    connection: process.env.DATABASE_URL || {
       host: process.env.DATABASE_HOST,
       port: process.env.DATABASE_PORT,
       database: process.env.DATABASE_NAME,
@@ -29,7 +29,7 @@ module.exports = {
 
   staging: {
     client: 'pg',
-    connection: {
+    connection: process.env.DATABASE_URL || {
       host: process.env.DATABASE_HOST,
       port: process.env.DATABASE_PORT,
       database: process.env.DATABASE_NAME,
@@ -51,7 +51,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: {
+    connection: process.env.DATABASE_URL || {
       host: process.env.DATABASE_HOST,
       port: process.env.DATABASE_PORT,
       database: process.env.DATABASE_NAME,

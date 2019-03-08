@@ -4,7 +4,6 @@ function logout(req, res) {
     res.clearCookie(process.env.SESSION_COOKIE_NAME);
     res.status(301).redirect('/login');
   });
-  res.status(301).redirect('/login');
 }
 
 module.exports = {

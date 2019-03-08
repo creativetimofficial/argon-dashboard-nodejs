@@ -12,10 +12,20 @@ const RedisStore = require('connect-redis')(session);
 const initAuthMiddleware = require('./features/login/init-auth-middleware');
 const indexRouter = require('./routes/index');
 
-const redisStore = new RedisStore({
+const redisStoreConfig = {
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
-});
+};
+
+if (process.env.REDIS_URL) {
+  redisStoreConfig.url = process.env.REDIS_URL; // this will use the REDIS_URL required for logging into the Redis addon provided by Heroku
+}
+
+if (process.env.REDIS_PASSWORD) {
+  redisStoreConfig.password = process.env.REDIS_PASSWORD; // this will use the REDIS_PASSWORD if required
+}
+
+const redisStore = new RedisStore(redisStoreConfig);
 
 const staticFolder = process.env.NODE_ENV === 'development' ? 'public' : 'dist';
 const app = express();

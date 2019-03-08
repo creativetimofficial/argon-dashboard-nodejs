@@ -41,7 +41,11 @@
     }
   }
 
-  function logout() {
+  function logout(event) {
+    if (!event.target.className.includes('logout')) {
+      return;
+    }
+
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", redirectToLogin);
@@ -49,9 +53,6 @@
     xhr.send();
   }
 
-  var logoutElements = document.querySelectorAll('.logout');
-
-  logoutElements.forEach(function(element) {
-    addEvent('click', element, logout);
-  });
+  var bodyElement = document.querySelector('body');
+  addEvent('click', bodyElement, logout);
 </script>
