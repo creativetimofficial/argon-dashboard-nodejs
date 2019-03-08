@@ -318,7 +318,7 @@ At present, we officially aim to support the last two versions of the following 
 
 Please see the [changelog](CHANGELOG.md) for more information on what has changed recently.
 
-[## Credits
+## Credits
 
 - [Creative Tim](https://creative-tim.com/)
 - [Under Development Office](https://udevoffice.com/)
@@ -335,7 +335,8 @@ Please see the [changelog](CHANGELOG.md) for more information on what has change
 
 ![Argon Users](/screens/Users.png)
 
-![Argon Profile](/screens/Profile.png)](## Reporting Issues
+![Argon Profile](/screens/Profile.png)
+## Reporting Issues
 
 We use GitHub Issues as the official bug tracker for the Material Kit. Here are some advices for our users that want to report an issue:
 
