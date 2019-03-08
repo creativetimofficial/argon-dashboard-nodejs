@@ -50,13 +50,13 @@ View example pages [here](https://argon-dashboard-nodejs.creative-tim.com/?ref=a
 3. Change connection configuration, from your root `cd` to `env-files` folder and change the following configurations with your own:
 
 ###### **For PostgreSQL connection:**
-1. Database connection via URL 
-```javascript
+1. Database connection via URL
+```bash
 DATABASE_URL=http://creativeTim:creativeTim@127.0.0.1:5432/creativeTim
-// Example: DATABASE_URL=http://<user>:<password>@<host>/<database_name>
+# Example: DATABASE_URL=http://<user>:<password>@<host>/<database_name>
 ```
 2. Database connection via credentials
-```javascript
+```bash
 DATABASE_HOST=127.0.0.1
 DATABASE_PORT=5432
 DATABASE_NAME=creativeTim
@@ -66,12 +66,12 @@ DATABASE_PASSWORD=creativeTim
 
 ######  **For Redis connection:**
 1. REDIS connection via URL
-```javascript
+```bash
 REDIS_URL=redis://:@127.0.0.1:6379
-// Example: redis://:<password>@<host>:<port>
+# Example: redis://:<password>@<host>:<port>
 ```
 2. REDIS connection via credentials
-```javascript
+```bash
 REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 REDIS_PASSWORD=
@@ -79,8 +79,8 @@ REDIS_PASSWORD=
 
 ## Migrations and seeds
 
-1. For database tables structure, in the project root run: `npm knex migrate:latest` or `yarn knex migrate:latest` if you are using `yarn` as the default package manager
-2. To create a default user, run: `npm knex seed:run` or `yarn knex seed:run` if you are using `yarn` as the default package manager
+1. For database tables structure, in the project root run: `npm run knex migrate:latest` or `yarn knex migrate:latest` if you are using `yarn` as the default package manager
+2. To create a default user, run: `npm run knex seed:run` or `yarn knex seed:run` if you are using `yarn` as the default package manager
 
 ## Run the application
 
@@ -122,7 +122,7 @@ module.exports = (router, middlewares = []) => {
 
 ```javascript
 function loadPage(req, res) {
-  debug('login:servePage', req, res);
+  debug('login:loadPage', req, res);
   res.render('pages/login');
 }
 ```
