@@ -327,15 +327,6 @@ Please see the [changelog](CHANGELOG.md) for more information on what has change
 
 [MIT License](https://github.com/laravel-frontend-presets/argon/blob/master/license.md).
 
-## Screenshots
-
-![Argon Login](/screens/Login.png)
-
-![Argon Dashboard](/screens/Dashboard.png)
-
-![Argon Users](/screens/Users.png)
-
-![Argon Profile](/screens/Profile.png)
 ## Reporting Issues
 
 We use GitHub Issues as the official bug tracker for the Material Kit. Here are some advices for our users that want to report an issue:
