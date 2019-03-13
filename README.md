@@ -4,8 +4,7 @@
 
 ![Product Image](https://s3.amazonaws.com/creativetim_bucket/products/148/original/opt_ad_node_thumbnail.jpg)
 
-
-Start your development with a Bootstrap 4 Admin Dashboard built for Node.js framework, the newest go-to technology for top companies. It features a huge number of components that can help you create amazing websites and brings with itself innumerable advantages: lightweight, fast, scalable and modern way to execute your next top app.
+Start your development with a Bootstrap 4 Admin Dashboard built for Node.js framework, the newest go-to technology for top companies. [Creative Tim](https://www.creative-tim.com/) partnered with [Udevoffice](https://udevoffice.com/) to provide a fully coded “frontend + backend” solution for you. It features a huge number of components that can help you create amazing websites and brings with itself innumerable advantages: lightweight, fast, scalable and modern way to execute your next top app.
 
 **FULLY CODED COMPONENTS**
 
