@@ -1,22 +1,27 @@
-<!-- Sidenav -->
-<% include ../partials/sidebar %> 
-<!-- Main content -->
-<div class="main-content">
-  <!-- Top navbar -->
-  <% include ../partials/navbar %>
-  <!-- Header -->
-  <% include ../partials/header %>
-  <!-- Page content -->
-  <div class="container-fluid mt--7">
-    <div class="row">
-      <div class="col">
-        <div class="card shadow border-0">
-          <div id="map-canvas" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>
+<body>
+  <!-- Sidenav -->
+  <% include ../partials/sidebar %>
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Top navbar -->
+    <% include ../partials/navbar %>
+    <!-- Header -->
+    <% include ../partials/header %>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow border-0">
+            <div id="map-canvas" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>
+          </div>
         </div>
       </div>
+      <!-- Footer -->
+      <% include ../partials/footer %>
     </div>
-    <!-- Footer -->
-    <% include ../partials/footer %>
   </div>
-</div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd3PjUqq81lIOfBPYXrQGWwK5T4ystZjA"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd3PjUqq81lIOfBPYXrQGWwK5T4ystZjA"></script>
+
+  <!-- Include scripts -->
+  <% include ../partials/scripts %>
+</body>

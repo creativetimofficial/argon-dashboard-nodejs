@@ -1,6 +1,6 @@
 {
-  "name": "ctim-express",
-  "version": "0.0.0",
+  "name": "argon-dashboard-nodejs",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "pm2": "pm2",
